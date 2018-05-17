@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<body>
+<h3>用户新增主页</h3>
+#@head()
+<div>
+	<p>用户新增：</p>
+	<form action="/lifusen/user/add" method="post" enctype="multipart/form-data">
+	 	姓名：<input type="text" name="name"/>#(nameMsg)<br>
+		介绍：<input type="text" name="content"/>#(contentMsg)<br>
+		等级：<input type="text" name="dengjiid"/><br>
+		图片：<input type="file" name="photo"><br>
+		<input type="submit" value="提交">#(addMsg)
+	</form>
+</div>
+</body>
+</html>

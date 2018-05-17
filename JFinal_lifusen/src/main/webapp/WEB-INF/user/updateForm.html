@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<body>
+<h3>用户新增主页</h3>
+#@head()
+<div>
+	<p>用户修改：</p>
+	<form action="/lifusen/user/update" method="post">
+		<input type="hidden" name="id" value="#(updateUser.getInt('id'))">
+	 	姓名：<input type="text" name="name" value="#(updateUser.getStr('name'))"/><br>
+		介绍：<input type="text" name="content" value="#(updateUser.getStr('content'))"/><br>
+		<input type="submit" value="修改">#(updateMsg)
+	</form>
+</div>
+</body>
+</html>

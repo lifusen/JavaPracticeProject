@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<body>
+<h3>用户查看主页</h3>
+#@head()
+<div>
+	<p>用户如下：</p>
+	#for(user:users.getList())
+	<p>用户名：#(user.getStr("name")??)，介绍：#(user.getStr("content")??)，金额：#(user.getStr("amount")??)</p>
+	<a href="/lifusen/user/testTx/#(user.getInt('id'))">测试事务</a>
+	<a href="/lifusen/user/updateForm/#(user.getInt('id'))">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/lifusen/user/delete/#(user.getInt('id'))">删除</a>
+	<img alt="用户头像" src="#(basePath)#(user.getStr('photo'))">
+	#end
+</div>
+</body>
+</html>
