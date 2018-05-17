@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lfs.www.dao.TblHeroMapper" >
+  <resultMap id="BaseResultMap" type="com.lfs.www.entity.TblHero" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="src_photo" property="srcPhoto" jdbcType="VARCHAR" />
+    <result column="src_video" property="srcVideo" jdbcType="VARCHAR" />
+    <result column="instruction" property="instruction" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, src_photo, src_video, instruction
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lfs.www.entity.TblHeroExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_hero
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectHeros" resultType="com.lfs.www.entity.TblHero">
+  	select *,src_photo srcphoto from tbl_hero
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_hero
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_hero
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lfs.www.entity.TblHeroExample" >
+    delete from tbl_hero
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lfs.www.entity.TblHero" >
+    insert into tbl_hero (id, name, src_photo, 
+      src_video, instruction)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{srcPhoto,jdbcType=VARCHAR}, 
+      #{srcVideo,jdbcType=VARCHAR}, #{instruction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lfs.www.entity.TblHero" >
+    insert into tbl_hero
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="srcPhoto != null" >
+        src_photo,
+      </if>
+      <if test="srcVideo != null" >
+        src_video,
+      </if>
+      <if test="instruction != null" >
+        instruction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="srcPhoto != null" >
+        #{srcPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="srcVideo != null" >
+        #{srcVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="instruction != null" >
+        #{instruction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lfs.www.entity.TblHeroExample" resultType="java.lang.Integer" >
+    select count(*) from tbl_hero
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_hero
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srcPhoto != null" >
+        src_photo = #{record.srcPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srcVideo != null" >
+        src_video = #{record.srcVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.instruction != null" >
+        instruction = #{record.instruction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_hero
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      src_photo = #{record.srcPhoto,jdbcType=VARCHAR},
+      src_video = #{record.srcVideo,jdbcType=VARCHAR},
+      instruction = #{record.instruction,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lfs.www.entity.TblHero" >
+    update tbl_hero
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="srcPhoto != null" >
+        src_photo = #{srcPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="srcVideo != null" >
+        src_video = #{srcVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="instruction != null" >
+        instruction = #{instruction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lfs.www.entity.TblHero" >
+    update tbl_hero
+    set name = #{name,jdbcType=VARCHAR},
+      src_photo = #{srcPhoto,jdbcType=VARCHAR},
+      src_video = #{srcVideo,jdbcType=VARCHAR},
+      instruction = #{instruction,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
