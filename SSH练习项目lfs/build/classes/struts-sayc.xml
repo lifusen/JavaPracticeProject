@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+	<package name="sayc" extends="ssh" namespace="/sayc">
+
+		<interceptors>
+			<interceptor name="auth" class="auth">
+			</interceptor>
+
+			<interceptor-stack name="myauth">
+				<interceptor-ref name="auth" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="myauth" />
+
+		<global-results>
+			<result name="loginc">/WEB-INF/jsp/user/userLogin.jsp</result>
+		</global-results>
+		
+		<action name="saycRegist" class="saycAction" method="regist">
+			<result>/WEB-INF/jsp/sayc/saycRegist.jsp</result>
+		</action>
+
+		<action name="saycLogin" class="saycAction" method="login">
+			<result type="redirect">/sayc/saycRegist</result>
+		</action>
+		
+	</package>
+
+</struts>

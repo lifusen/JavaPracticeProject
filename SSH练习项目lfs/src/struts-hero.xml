@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+	<package name="hero" extends="ssh" namespace="/hero">
+
+		<interceptors>
+			<interceptor name="auth" class="auth">
+				<param name="excludeMethods">login</param>
+			</interceptor>
+
+			<interceptor-stack name="myauth">
+				<interceptor-ref name="auth" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="myauth" />
+		
+		<global-results>
+			<result name="login2">/WEB-INF/jsp/user/userLogin.jsp</result>
+		</global-results>
+
+		<action name="heroRegistForm" class="heroAction" method="registForm">
+			<result>/WEB-INF/jsp/hero/heroRegist.jsp</result>
+		</action>
+		
+		<action name="heroSelect" class="heroAction" method="select">
+			<result>/WEB-INF/jsp/hero/heroSelect.jsp</result>
+		</action>
+		<action name="heroUpdate" class="heroAction" method="update">
+			<result>/WEB-INF/jsp/hero/heroSelect.jsp</result>
+		</action>
+
+		<action name="heroRegist" class="heroAction" method="regist">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/jpeg, image/png, image/gif</param>
+				<param name="maximumSize">1024000</param>
+			</interceptor-ref>
+			<!-- 文件上传下载 必须要加过滤器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<!-- 这个地方是chain jsp页面就是[1]fieldErrors 如果dispathcer 就是0 -->
+			<result name="input" type="chain">heroRegistForm</result>
+			<result name="success" type="redirect">/index</result>
+		</action>
+
+
+		<action name="heroLogin" class="heroAction" method="login">
+			<result>/WEB-INF/jsp/hero/heroLogin.jsp</result>
+		</action>
+		
+		<action name="download" class="heroAction" method="download">
+			<result name="success" type="stream">
+				<param name="inputName">is</param>
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">attchement;filename=${fileName}</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		
+		<action name="download1" class="heroAction" method="download1">
+			<result name="success" type="stream">
+				<param name="inputName">is</param>
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">attchement;filename=${fileName}</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+	</package>
+
+</struts>
