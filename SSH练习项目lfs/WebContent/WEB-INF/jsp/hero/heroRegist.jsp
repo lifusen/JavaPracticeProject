@@ -11,9 +11,10 @@
 <title>文章编辑</title>
 </head>
 <body>
-
+<div style="width:1000px;margin:0 auto">
+<br />
+<%@include file="../common/title.jsp"%>
 <form role="form" style="width:400px;margin:0 auto" action="/lfs/hero/heroRegist" method="post" enctype="multipart/form-data">
-	<%@include file="../common/title.jsp"%>
 	<h3>文章编辑</h3><br />
 	<div class="form-group">
 		<label for="inputname0" >标题</label>
@@ -37,10 +38,31 @@
   	</div>
   <button type="submit" class="btn btn-default" style="float:right">提交</button><p>${registTip }</p>
 </form>
+</div>
 </body>
 </html>
 <script>
-	$(function(){
+		$(function(){
+		$('#myCarousel').carousel('cycle');
+		myTimer();
+		 $("#weather").hide();
+		setInterval(function(){myTimer()},1000);
+
+		function myTimer()
+		{
+		var d=new Date();
+		var str = "" + d.getFullYear() + "年";
+		str += (d.getMonth()+1) + "月";
+		str += d.getDate() + "日";
+		var t=d.toLocaleTimeString();
+		$("#time a").html(str+t);
+		}
 		
+		$("#wea").mouseover(function(){
+			  $("#weather").show();
+			});
+		$("#wea").mouseout(function(){
+			  $("#weather").hide();
+			});
 	})
 </script>

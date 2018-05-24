@@ -11,10 +11,12 @@
 <title>言论发表页面</title>
 </head>
 <body>
-	
+	<div style="width:1000px;margin:0 auto">
+<br />
+<%@include file="../common/title.jsp"%>
 	<form role="form" style="width:800px;margin:0 auto"
 		action="/lfs/sayc/saycLogin" method="post">
-		<%@include file="../common/title.jsp"%>
+		
 		<h3>言论发表页面</h3>
 		<br />
 		<div class="form-group">
@@ -32,9 +34,30 @@
 			
 		</div>
 	</form>
-
+</div>
 </body>
 </html>
-<script>
-	$(function() {})
+<script>	$(function(){
+		$('#myCarousel').carousel('cycle');
+		myTimer();
+		 $("#weather").hide();
+		setInterval(function(){myTimer()},1000);
+
+		function myTimer()
+		{
+		var d=new Date();
+		var str = "" + d.getFullYear() + "年";
+		str += (d.getMonth()+1) + "月";
+		str += d.getDate() + "日";
+		var t=d.toLocaleTimeString();
+		$("#time a").html(str+t);
+		}
+		
+		$("#wea").mouseover(function(){
+			  $("#weather").show();
+			});
+		$("#wea").mouseout(function(){
+			  $("#weather").hide();
+			});
+	})$(function() {})
 </script>
