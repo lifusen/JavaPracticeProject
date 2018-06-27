@@ -1,10 +1,13 @@
 package com.lfs.www.entity;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 
-public class TblUser {
+@SuppressWarnings("serial")
+public class TblUser implements Serializable{
     private Integer id;
     
     @NotNull(message="{User.name.notNull}")

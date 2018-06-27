@@ -40,30 +40,11 @@
     <a class="carousel-control right" href="#myCarousel" 
        data-slide="next">&rsaquo;</a>
 </div><br />
-<%-- 
-	<div style="float:left; width:680px;"  class="text-muted">
-		<h4>最新发表</h4>
-		<div style="float:left;"><label style="width:450px"><a>111111111111111111111</a></label>
-		<label>张志强-2017年01月01日</label></div>
-		<div style="float:left;"><label style="width:450px"><a>111111111111111111111</a></label>
-			<label>张志强-2017年01月01日</label></div>
-		<div style="float:left;"><label style="width:450px"><a>111111111111111111111</a></label>
-		<label>张志强-2017年01月01日</label></div>
-	</div>
-	<div style="float:right;width:200px;">
-		<h4>管理资源</h4>
-		<div><label><a>管理员网盘</a></label></div>
-		<div><label><a>管理员电影</a></label></div>
-		<div><label><a>管理员音乐</a></label></div>
-	</div>
-	--%>
+
 	<video width="100%" controls autoplay>
 	<source src="/lfs/video/23.mkv" type="video/mp4">
 	</video>
 	<div style="margin:0 auto">
-	<b>注意：战狼2视频是mkv格式，有的浏览器或者手机浏览器加载不出来或者播放卡</b><br>
-	<b>建议点击下面图片下载观看，下载一定不能中断，可以在后台下载一共2.76G（720P画质）</b><br>
-	<b>更高画质，我还没找到。。。账户密码是：lifusen 123456 只要电脑没关，服务器就会一直运行</b><br>
 	<a href="/lfs/hero/download1?src=/video/23.mkv&name=zhanlang2.MP4">
 		<img src="/lfs/photos/zl2.jpg" alt="Third slide" style="width:30%;">
 	</a></div>
